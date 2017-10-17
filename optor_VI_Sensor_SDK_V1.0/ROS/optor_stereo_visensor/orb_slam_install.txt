@@ -1,0 +1,36 @@
+ORB_SLAM2安装
+0. 测试电脑配置:ubuntu16.04 + 独立显卡 + openGL3.0
+1. librealsense安装：
+	$ git clone https://github.com/IntelRealSense/librealsense.git
+	$ mkdir build
+	$ cd build
+	$ cmake ..
+	$ make && sudo make install
+
+2. Pangolin安装
+	$ git clone https://github.com/stevenlovegrove/Pangolin.git
+	$ cd Pangolin
+	$ mkdir build
+	$ cd build
+	$ cmake -DCPP11_NO_BOOST=1 ..
+	$ make -l
+如果出现Could NOT find GLEW错误 ，就是要安装一些依赖项
+sudo apt-get install  libx11-dev libxmu-dev libglu1-mesa-dev libgl2ps-dev libxi-dev g++ libzip-dev libpng12-dev libcurl4-gnutls-dev libfontconfig1-dev libsqlite3-dev libglew*-dev libssl-dev
+
+3. ORB—SLAM安装
+	1. Boost:
+		$ sudo apt-get install libboost-all-dev 
+	2. 安装依赖：
+		sudo apt-get install libsuitesparse-dev   libblas-dev   liblapack-dev   libeigen3-dev 
+
+	3. opencv安装
+		sudo apt-get install libopencv-dev
+	3. 修改build.sh
+		make -j   ---->  make -l	#-j有可能电脑会卡死，修改-l解决问题
+   	   修改build_ros.sh
+		make -j   ---->  make -l
+	4. 安装
+		$ echo "export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:${PATH}/ORB_SLAM2/Examples/ROS" >> ~/.bashrc	#修改PATH为你的ORB_SLAM2的路径
+		$ ./build.sh
+		$ ./build_ros.sh
+
