@@ -845,12 +845,12 @@ void *cam1_capture(void*)
     uint32_t count=0;
     while(!shut_down_tag)
     {
-        ctt++;
+        /*ctt++;
         if(ctt>=4)	//该数值越大，则帧同步的周期越长，同步频率越小
         {
             control_camera(1,STANDBY_SHORT);
             ctt = 0;
-        }
+        }*/
 
         for(gFrameCam1=0; gFrameCam1<FRAME_CLUST; gFrameCam1++)
         {
@@ -937,12 +937,12 @@ void *cam2_capture(void*)
     uint32_t count=0;
     while(!shut_down_tag)
     {
-	ctt++;
+	/*ctt++;
         if(ctt>=4)	//该数值越大，则帧同步的周期越长，同步频率越小
         {
             control_camera(2,STANDBY_SHORT);
             ctt = 0;
-        }
+        }*/
         for(gFrameCam2=0; gFrameCam2<FRAME_CLUST; gFrameCam2++)
         {
             if(shut_down_tag)break;
