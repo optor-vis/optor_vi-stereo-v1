@@ -731,7 +731,7 @@ int camera_i2c_write(int cam_no, unsigned char reg,int value)
     return r;
 }
 
-/*int check_img(int cam_no,unsigned char *pImg,unsigned char *pImgPass)
+int check_img(int cam_no,unsigned char *pImg,unsigned char *pImgPass)
 {
 //	printf("Cam image check enter:%d\n",visensor_resolution_status);
     if(!visensor_resolution_status)*pImgPass = (pImg[IMG_SIZE_VGA+0]==0xFF&&pImg[IMG_SIZE_VGA+1]==0x00&&pImg[IMG_SIZE_VGA+2]==0xFE&&pImg[IMG_SIZE_VGA+3]==0x01);
@@ -739,9 +739,9 @@ int camera_i2c_write(int cam_no, unsigned char reg,int value)
     if(*pImgPass == 0)
     {
         control_camera(cam_no,fps_control());
-        printf("Cam%d image check error!\n",cam_no);
+        //printf("Cam%d image check error!\n",cam_no);
     }
-}*/
+}
 
 float visensor_get_hardware_fps()
 {
@@ -857,20 +857,16 @@ void *cam1_capture(void*)
             if(shut_down_tag)break;
             im1[gFrameCam1].pass=0;
 
-//            im_buf_size = (visensor_resolution_status==1?IMG_BUF_SIZE_WVGA:IMG_BUF_SIZE_VGA);
-            im_buf_size = (visensor_resolution_status==1?IMG_SIZE_WVGA:IMG_SIZE_VGA);
-            r = cyusb_bulk_transfer(pcam1_handle, 0x82, im1[gFrameCam1].data, im_buf_size, &transferred, 200);
+            im_buf_size = (visensor_resolution_status==1?IMG_BUF_SIZE_WVGA:IMG_BUF_SIZE_VGA);
+//            im_buf_size = (visensor_resolution_status==1?IMG_SIZE_WVGA:IMG_SIZE_VGA);
+            r = cyusb_bulk_transfer(pcam1_handle, 0x82, im1[gFrameCam1].data, im_buf_size, &transferred, 2000);
             gettimeofday(&cap_systime,NULL);
             im1[gFrameCam1].timestamp = cap_systime.tv_sec+0.000001*cap_systime.tv_usec-time_offset;
             if(r)
             {
             	printf("cam1 bulk transfer returned: %d\n",r);
             }
-            else
-            {
-            	im1[gFrameCam1].pass=1;
-            }
-//            check_img(1,im1[gFrameCam1].data,&im1[gFrameCam1].pass);
+           check_img(1,im1[gFrameCam1].data,&im1[gFrameCam1].pass);
             if(im1[gFrameCam1].pass==1)
             {
                 count++;
@@ -951,21 +947,18 @@ void *cam2_capture(void*)
         {
             if(shut_down_tag)break;
             im2[gFrameCam2].pass=0;
-            //im_buf_size = (visensor_resolution_status==1?IMG_BUF_SIZE_WVGA:IMG_BUF_SIZE_VGA);
-	    im_buf_size = (visensor_resolution_status==1?IMG_SIZE_WVGA:IMG_SIZE_VGA);
-            r = cyusb_bulk_transfer(pcam2_handle, 0x82, im2[gFrameCam2].data, im_buf_size, &transferred, 200);
+            im_buf_size = (visensor_resolution_status==1?IMG_BUF_SIZE_WVGA:IMG_BUF_SIZE_VGA);
+	    //im_buf_size = (visensor_resolution_status==1?IMG_SIZE_WVGA:IMG_SIZE_VGA);
+            r = cyusb_bulk_transfer(pcam2_handle, 0x82, im2[gFrameCam2].data, im_buf_size, &transferred, 2000);
             gettimeofday(&cap_systime,NULL);
             im2[gFrameCam2].timestamp = cap_systime.tv_sec+0.000001*cap_systime.tv_usec-time_offset;
             if(r)
 	    {
 		printf("cam2 bulk transfer returned: %d\n",r);
 	    }	
-            else
-            {
-            	im2[gFrameCam2].pass=1;
-            }
+
 	    //printf("cam2 bulk transfer returned: %d\n",r);
-            //check_img(2,im2[gFrameCam2].data,&im2[gFrameCam2].pass);
+            check_img(2,im2[gFrameCam2].data,&im2[gFrameCam2].pass);
             if(im2[gFrameCam2].pass==1)
             {
                 count++;
