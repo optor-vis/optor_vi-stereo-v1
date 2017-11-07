@@ -19,7 +19,8 @@
 
 #include <libusb-1.0/libusb.h>
 
-#include "optor_stereo_visensor_ros/loitorcam.h"
+#include "optorimu.h"
+#include "optorusb.h"
 
 
 #define LOG			printf

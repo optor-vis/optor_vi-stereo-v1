@@ -16,7 +16,7 @@ find_package(OpenCV REQUIRED)
 
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES loitor_stereo_visensor_ros
+#  LIBRARIES optor_stereo_visensor_ros
     CATKIN_DEPENDS  sensor_msgs std_msgs  cv_bridge  image_transport  message_runtime
 #  DEPENDS system_lib
 )
@@ -26,12 +26,12 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(loitorcam src/loitorcam.cpp)
-add_library(loitorimu src/loitorimu.cpp)
-add_library(loitorusb src/loitorusb.cpp)
+add_library(optorcam src/optorcam.cpp)
+add_library(optorimu src/optorimu.cpp)
+add_library(optorusb src/optorusb.cpp)
 
 add_library(stereo_visensor_cam src/stereo_visensor_cam.cpp) 
-target_link_libraries(stereo_visensor_cam loitorcam loitorimu loitorusb usb-1.0 ${OpenCV_LIBS} ${catkin_LIBRARIES})
+target_link_libraries(stereo_visensor_cam optorcam optorimu optorusb usb-1.0 ${OpenCV_LIBS} ${catkin_LIBRARIES})
 
 
 add_executable(stereo_visensor_node src/stereo_visensor_node.cpp) 
@@ -46,7 +46,7 @@ target_link_libraries(stereo_visensor_node stereo_visensor_cam)
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/loitor_stereo_visensor_ros_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/optor_stereo_visensor_ros_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -103,7 +103,7 @@ target_link_libraries(stereo_visensor_node stereo_visensor_cam)
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_loitor_stereo_visensor_ros.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_optor_stereo_visensor_ros.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

@@ -2,7 +2,7 @@
 
 #include <libusb-1.0/libusb.h>
 
-#include "optor_stereo_visensor_ros/loitorusb.h"
+#include "optorusb.h"
 
 /* This is the maximum number of 'devices of interest' we are willing to store as default. */
 /* These are the maximum number of devices we will communicate with simultaneously */

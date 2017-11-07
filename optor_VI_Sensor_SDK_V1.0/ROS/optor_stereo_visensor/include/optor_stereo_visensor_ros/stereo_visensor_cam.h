@@ -35,7 +35,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "loitorcam.h"
+#include "optorcam.h"
 
 class StereoVisensorCam
 {

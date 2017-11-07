@@ -1,5 +1,5 @@
-#ifndef LOITORUSB_H
-#define LOITORUSB_H
+#ifndef OPTORUSB_H
+#define OPTORUSB_H
 
 typedef struct libusb_device	cyusb_device;
 typedef struct libusb_device_handle	cyusb_handle;

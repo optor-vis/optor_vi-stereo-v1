@@ -11,7 +11,7 @@
 #include <sys/time.h>
 
 #define IMU_FRAME_LEN 32
-#include "optor_stereo_visensor_ros/loitorimu.h"
+#include "optorimu.h"
 
 bool shut_down_imu=false;
 

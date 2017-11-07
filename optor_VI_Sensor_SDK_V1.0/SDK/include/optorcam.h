@@ -1,8 +1,8 @@
 #include <sys/time.h>
-#include "loitorimu.h"
+#include "optorimu.h"
 
-#ifndef LOITORUSBCAM_H
-#define LOITORUSBCAM_H
+#ifndef OPTORUSBCAM_H
+#define OPTORUSBCAM_H
 #define IMU_FRAME_LEN 32
 #define IMG_WIDTH_VGA 	640
 #define IMG_HEIGHT_VGA 	480

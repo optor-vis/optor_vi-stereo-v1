@@ -9,9 +9,9 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include "loitorusb.h"
-#include "loitorcam.h"
-#include "loitorimu.h"
+#include "optorusb.h"
+#include "optorcam.h"
+#include "optorimu.h"
 
 using namespace std;
 using namespace cv;

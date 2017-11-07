@@ -1,5 +1,5 @@
-#ifndef LOITORIMU_H
-#define LOITORIMU_H
+#ifndef OPTORIMU_H
+#define OPTORIMU_H
 
 typedef struct 
 {
